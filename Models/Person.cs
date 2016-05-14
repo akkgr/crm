@@ -7,6 +7,7 @@ namespace Crm.Cinnamon.Models
         public Person()
         {
             PersonInfos = new HashSet<PersonInfo>();
+            Addresses = new HashSet<Address>();
         }
 
         public string Id { get; set; }
@@ -20,5 +21,7 @@ namespace Crm.Cinnamon.Models
         public string FullName { get { return string.Format("{0} {1}", LastName, FirstName); } }
 
         public ICollection<PersonInfo> PersonInfos { get; set; }
+        
+        public ICollection<Address> Addresses {get; set;}
     }
 }

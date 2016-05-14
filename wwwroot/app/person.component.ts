@@ -7,9 +7,9 @@ import { PeopleService }       from './people.service';
 
 @Component({
     selector: 'people',
-    templateUrl: 'views/people.html'
+    templateUrl: 'views/person.html'
 })
-export class PeopleComponent implements OnInit {
+export class PersonComponent implements OnInit {
 
     constructor(
         private router: Router,
@@ -17,26 +17,30 @@ export class PeopleComponent implements OnInit {
         private peopleService: PeopleService) { }
     errorMessage: string;
     people: Person[];
+    person: Person;
 
     isOn = false;
     sideBarToggle(val) {
         this.isOn = val;
     }
 
-    ngOnInit() { this.getPeople(); }
+    ngOnInit() {
+        let id = this.routeParams.get('id');
+        this.getPerson(id); 
+    }
 
-    getPeople() {
-        this.peopleService.getPeople()
+    getPerson(id: string) {
+        this.peopleService.getPerson(id)
             .subscribe(
-            people => this.people = people,
+            person => this.person = person,
             error => this.errorMessage = <any>error);
     }
 
-    addPerson() {
-        this.router.navigate(['Contact',  {id: "new"} ]);
-    }
-    
-    editPerson(id: string) {
-        this.router.navigate(['Contact',  {id: id} ]);
+    addPerson(name: string) {
+        if (!name) { return; }
+        this.peopleService.addPerson(name)
+            .subscribe(
+            person => this.people.push(person),
+            error => this.errorMessage = <any>error);
     }
 }

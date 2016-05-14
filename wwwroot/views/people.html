@@ -4,13 +4,14 @@
         <tr>
             <th>Lastname</th>
             <th>Firstname</th>
+            <th><a (click)="addPerson()"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let person of people">
-            <!--<th scope="row">{{index}}</th>-->
+        <tr *ngFor="let person of people">            
             <td>{{person.LastName}}</td>
             <td>{{person.FirstName}}</td>
+            <td><a (click)="editPerson(person.Id)"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
         </tr>
     </tbody>
   </table>

@@ -16,7 +16,7 @@ import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteDefinition} from '@angular/
             <li *ngFor="let url of urls; let last = last" [ngClass]="{'active': last}"> <!-- disable link of last item -->
                 <a *ngIf="!last" (click)="navigateTo(url)">{{friendlyName(url)}}</a>
                 <span *ngIf="last">{{friendlyName(url)}}</span>
-            </li>
+            </li>            
         </ol>
     `
 })
@@ -49,8 +49,12 @@ export class BreadcrumbComponent {
             let route: RouteDefinition;
             for (let i = 0; i < this.routeConfig.length; i += 1) {
                 route = this.routeConfig[i];
-                if (url == route.path) {
-                    return route.as;
+                var u = url;
+                if (url.lastIndexOf('/') > 0) {
+                    u = url.substr(0, url.lastIndexOf('?'));
+                }
+                if (u == route.path) {
+                    return route.name;
                 }
             }
         }
