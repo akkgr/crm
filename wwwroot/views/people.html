@@ -1,0 +1,17 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Lastname</th>
+            <th>Firstname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of people">
+            <!--<th scope="row">{{index}}</th>-->
+            <td>{{person.LastName}}</td>
+            <td>{{person.FirstName}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

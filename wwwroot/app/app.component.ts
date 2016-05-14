@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {NgClass} from '@angular/common';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { HTTP_PROVIDERS }    from '@angular/http';
 
-import { FirstComponent } from './first.component';
+import { PeopleComponent } from './people.component';
+import { PeopleService } from './people.service';
 import { SecondComponent } from './second.component';
 import {BreadcrumbComponent} from './breadcrumb';
 
@@ -11,14 +13,16 @@ import {BreadcrumbComponent} from './breadcrumb';
     templateUrl: 'views/main.html',
     directives: [ROUTER_DIRECTIVES, BreadcrumbComponent],
   providers: [
-    ROUTER_PROVIDERS
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
+    PeopleService,
   ]
 })
 @RouteConfig([
   {
-    path: '/first',
-    name: 'First',
-    component: FirstComponent,
+    path: '/contacts',
+    name: 'Contacts',
+    component: PeopleComponent,
     useAsDefault: false
   },
   {
