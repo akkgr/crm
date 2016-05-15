@@ -57,8 +57,8 @@ namespace Crm.Cinnamon.Controllers
             }
 
             var query = Builders<Person>.Filter.Eq(e => e.Id, id);
-            await db.People.ReplaceOneAsync(query, obj);
-            return new HttpOkResult();
+            await db.People.ReplaceOneAsync(query, value);
+            return new HttpOkObjectResult(value);
         }
 
         // DELETE api/values/5

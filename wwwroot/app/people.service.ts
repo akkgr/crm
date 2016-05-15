@@ -23,13 +23,32 @@ export class PeopleService {
       .catch(this.handleError);
   }
 
-  addPerson(name: string): Observable<Person> {
-    let body = JSON.stringify({ name });
+  addPerson(person: Person): Observable<Person> {
+    let body = JSON.stringify(person);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.peopleUrl, body, options)
       .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  updatePerson(person: Person): Observable<Person> {
+    let body = JSON.stringify(person);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.peopleUrl + "/" + person.Id, body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  deletePerson(id: string) {
+    
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(this.peopleUrl + "/" + id, options)
       .catch(this.handleError);
   }
 

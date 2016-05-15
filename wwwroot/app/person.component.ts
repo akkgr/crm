@@ -16,8 +16,7 @@ export class PersonComponent implements OnInit {
         private routeParams: RouteParams,
         private peopleService: PeopleService) { }
     errorMessage: string;
-    people: Person[];
-    person: Person;
+    person: Person = { Id:"", LastName:"", FirstName:"",  FullName:"", PersonInfos:[], PersonType:0};
 
     isOn = false;
     sideBarToggle(val) {
@@ -26,7 +25,11 @@ export class PersonComponent implements OnInit {
 
     ngOnInit() {
         let id = this.routeParams.get('id');
-        this.getPerson(id); 
+        if (id === "new") {
+            this.person = new Person("", "", "", "", [], 0);
+        } else {
+            this.getPerson(id);
+        }
     }
 
     getPerson(id: string) {
@@ -36,11 +39,24 @@ export class PersonComponent implements OnInit {
             error => this.errorMessage = <any>error);
     }
 
-    addPerson(name: string) {
-        if (!name) { return; }
-        this.peopleService.addPerson(name)
+    savePerson() {
+        if (!this.person.Id) {
+            this.peopleService.addPerson(this.person)
+                .subscribe(
+                person => this.person = person,
+                error => this.errorMessage = <any>error);
+        } else {
+            this.peopleService.updatePerson(this.person)
+                .subscribe(
+                person => this.person = person,
+                error => this.errorMessage = <any>error);
+        }
+    }
+    
+    deletePerson() {
+        this.peopleService.deletePerson(this.person.Id)
             .subscribe(
-            person => this.people.push(person),
-            error => this.errorMessage = <any>error);
+                person => this.person = person,
+                error => this.errorMessage = <any>error);
     }
 }
