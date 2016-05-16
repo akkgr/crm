@@ -1,4 +1,3 @@
-import * as toastr from "toastr";
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';

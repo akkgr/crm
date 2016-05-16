@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Crm.Cinnamon.Models;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Crm.Cinnamon.Controllers
