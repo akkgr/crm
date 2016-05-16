@@ -3,7 +3,7 @@ namespace Crm.Cinnamon.Models
 {
     public class Address
     {
-        public string AddressType { get; set; }
+        public AddressTypes AddressType { get; set; }
 
         public string Area { get; set; }
 

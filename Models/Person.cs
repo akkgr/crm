@@ -8,11 +8,12 @@ namespace Crm.Cinnamon.Models
         {
             PersonInfos = new HashSet<PersonInfo>();
             Addresses = new HashSet<Address>();
+            PersonTypes = new HashSet<PersonTypes>();
         }
 
         public string Id { get; set; }
         
-        public PersonTypes PersonType { get; set; }
+        public ICollection<PersonTypes> PersonTypes { get; set; }
 
         public string LastName { get; set; }
 
