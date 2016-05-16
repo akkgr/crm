@@ -3,20 +3,19 @@
     <label for="lastname">Lastname</label>
     <input type="text" class="form-control" id="lastname" placeholder="Lastname" [(ngModel)]="person.LastName">
   </div>
+
   <div class="form-group">
     <label for="firstname">Firstname</label>
     <input type="text" class="form-control" id="firstname" placeholder="Firstname" [(ngModel)]="person.FirstName">
   </div>
-  <div *ngFor="let address of person.Addresses">
-    <div class="form-group">
-      <label for="addressType">Address Type</label>
-      <input type="text" class="form-control" id="addressType" placeholder="Address Type" [(ngModel)]="address.AddressType">
-    </div>
-    <div class="form-group">
-      <label for="area">Area</label>
-      <input type="text" class="form-control" id="addressType" placeholder="Area" [(ngModel)]="address.Area">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Addresses</div>
+    <div class="panel-body">
+      <addresses [(list)]="person.Addresses"></addresses>
     </div>
   </div>
+
   <button type="button" class="btn btn-danger" (click)="deletePerson()"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
   <button type="button" class="btn btn-success pull-right" (click)="savePerson()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
 </form>

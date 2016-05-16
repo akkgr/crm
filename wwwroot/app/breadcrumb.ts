@@ -12,9 +12,9 @@ import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteDefinition} from '@angular/
     directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, NgClass],
     template: `
         <ol class="breadcrumb">
-            <li><a (click)="sideBarToggle(!isOn)"><i class="glyphicon glyphicon-th-large"></i></a></li>
+            <li><a href="javascript:void(0)" (click)="sideBarToggle(!isOn)"><i class="glyphicon glyphicon-th-large"></i></a></li>
             <li *ngFor="let url of urls; let last = last" [ngClass]="{'active': last}"> <!-- disable link of last item -->
-                <a *ngIf="!last" (click)="navigateTo(url)">{{friendlyName(url)}}</a>
+                <a href="javascript:void(0)" *ngIf="!last" (click)="navigateTo(url)">{{friendlyName(url)}}</a>
                 <span *ngIf="last">{{friendlyName(url)}}</span>
             </li>            
         </ol>

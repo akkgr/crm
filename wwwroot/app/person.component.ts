@@ -4,10 +4,12 @@ import { RouteParams, Router } from '@angular/router-deprecated';
 
 import { Person }              from './person';
 import { PeopleService }       from './people.service';
+import { AddressesComponent }  from './addresses.component';
 
 @Component({
     selector: 'people',
-    templateUrl: 'views/person.html'
+    templateUrl: 'views/person.html',
+    directives: [AddressesComponent]
 })
 export class PersonComponent implements OnInit {
 
