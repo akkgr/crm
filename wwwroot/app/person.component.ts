@@ -16,7 +16,7 @@ export class PersonComponent implements OnInit {
         private routeParams: RouteParams,
         private peopleService: PeopleService) { }
     errorMessage: string;
-    person: Person = { Id:"", LastName:"", FirstName:"",  FullName:"", PersonInfos:[], PersonType:0};
+    person: Person = { Id: "", LastName: "", FirstName: "", FullName: "", PersonInfos: [], PersonType: 0 };
 
     isOn = false;
     sideBarToggle(val) {
@@ -43,20 +43,25 @@ export class PersonComponent implements OnInit {
         if (!this.person.Id) {
             this.peopleService.addPerson(this.person)
                 .subscribe(
-                person => this.person = person,
+                person => this.gotoList(person),
                 error => this.errorMessage = <any>error);
         } else {
             this.peopleService.updatePerson(this.person)
                 .subscribe(
-                person => this.person = person,
+                person => this.gotoList(person),
                 error => this.errorMessage = <any>error);
         }
     }
-    
+
     deletePerson() {
         this.peopleService.deletePerson(this.person.Id)
             .subscribe(
-                person => this.person = person,
-                error => this.errorMessage = <any>error);
+            person => this.gotoList(person),
+            error => this.errorMessage = <any>error);
+    }
+
+    private gotoList(person: Person) {
+        this.person = person;
+        this.router.navigate(['Contacts']);
     }
 }
