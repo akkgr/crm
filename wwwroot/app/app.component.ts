@@ -43,7 +43,7 @@ export class AppComponent {
 
   public routeConfig: String[];
 
-  constructor() {    
+  constructor() {
     // Read the RouteConfig annotation so we can pass it to the breadcrumb component
     let annotations = Reflect.getOwnMetadata('annotations', AppComponent);
     for (let i = 0; i < annotations.length; i += 1) {

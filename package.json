@@ -10,7 +10,7 @@
     "clean": "gulp clean",
     "compile": "gulp compile",
     "build": "gulp build",
-    "start": "concurrently \"gulp watch\" \"dnx web\"",
+    "start": "concurrently \"gulp watch\" \"dotnet run\"",
     "postinstall": "typings install"
   },
   "license": "ISC",

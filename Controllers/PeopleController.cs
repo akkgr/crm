@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Crm.Cinnamon.Models;
 using MongoDB.Driver;
 
@@ -30,9 +30,9 @@ namespace Crm.Cinnamon.Controllers
             var obj = await db.People.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return new HttpOkObjectResult(obj);
+            return new OkObjectResult(obj);
         }
 
         // POST api/values
@@ -40,7 +40,7 @@ namespace Crm.Cinnamon.Controllers
         public async Task<IActionResult> Post([FromBody]Person value)
         {
             await db.People.InsertOneAsync(value);
-            return new HttpOkObjectResult(value);
+            return new OkObjectResult(value);
         }
 
         // PUT api/values/5
@@ -50,12 +50,12 @@ namespace Crm.Cinnamon.Controllers
             var obj = await db.People.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             var query = Builders<Person>.Filter.Eq(e => e.Id, id);
             await db.People.ReplaceOneAsync(query, value);
-            return new HttpOkObjectResult(value);
+            return new OkObjectResult(value);
         }
 
         // DELETE api/values/5
@@ -63,7 +63,7 @@ namespace Crm.Cinnamon.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             await db.People.FindOneAndDeleteAsync(t => t.Id == id);
-            return new HttpOkResult();
+            return new OkResult();
         }
     }
 }
