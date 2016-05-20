@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Crm.Cinnamon.Models;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace Crm.Cinnamon.Controllers
 {

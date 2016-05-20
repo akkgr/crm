@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+/// <reference path="jquery.d.ts" />
+
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgClass} from '@angular/common';
 import { RouteParams, Router } from '@angular/router-deprecated';
 
@@ -12,20 +14,31 @@ import { AddressesComponent }  from './addresses.component';
     directives: [AddressesComponent]
 })
 export class PersonComponent implements OnInit {
+    @ViewChild('select') selectElRef;
 
     constructor(
         private router: Router,
         private routeParams: RouteParams,
         private peopleService: PeopleService) { }
+
     errorMessage: string;
-    person: Person = { 
-        Id: "", 
-        LastName: "", 
-        FirstName: "", 
-        FullName: "", 
-        PersonInfos: [], 
+
+    personTypes = [
+        { value: 1, name: "Employee" },
+        { value: 2, name: "Contact" },
+        { value: 3, name: "Customer" },
+        { value: 4, name: "Provider" },
+        { value: 5, name: "Partner" }];
+
+    person: Person = {
+        Id: "",
+        LastName: "",
+        FirstName: "",
+        FullName: "",
+        PersonInfos: [],
         PersonTypes: [],
-        Addresses: [] };
+        Addresses: []
+    };
 
     isOn = false;
     sideBarToggle(val) {
@@ -35,16 +48,30 @@ export class PersonComponent implements OnInit {
     ngOnInit() {
         let id = this.routeParams.get('id');
         if (id === "new") {
-            this.person = new Person("",[],"","","",[],[]);
+            this.person = new Person("", [], "", "", "", [], []);
         } else {
             this.getPerson(id);
-        }
+        }        
+    }
+    
+    updateOptions() {        
+        let options = this.selectElRef.nativeElement.options;
+        for (let i = 0; i < options.length; i++) {
+            options[i].selected = this.person.PersonTypes.indexOf(parseInt(options[i].value)) > -1;
+        }        
+        $('#select').selectpicker();
+    }
+
+    change(options) {
+        this.person.PersonTypes = Array.apply(null, options)
+            .filter(option => option.selected)
+            .map(option => option.value)
     }
 
     getPerson(id: string) {
         this.peopleService.getPerson(id)
             .subscribe(
-            person => this.person = person,
+            person => {this.person = person; this.updateOptions(); },
             error => this.errorMessage = <any>error);
     }
 
@@ -73,4 +100,5 @@ export class PersonComponent implements OnInit {
         this.person = person;
         this.router.navigate(['Contacts']);
     }
+
 }

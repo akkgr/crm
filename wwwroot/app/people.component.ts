@@ -33,10 +33,10 @@ export class PeopleComponent implements OnInit {
     }
 
     addPerson() {
-        this.router.navigate(['Contact',  {id: "new"} ]);
+        this.router.navigate(['Contact', { id: "new" }]);
     }
-    
+
     editPerson(id: string) {
-        this.router.navigate(['Contact',  {id: id} ]);
+        this.router.navigate(['Contact', { id: id }]);
     }
 }

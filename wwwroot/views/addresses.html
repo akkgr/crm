@@ -1,26 +1,34 @@
-<div class="row" *ngFor="let address of list">
-    <div class="form-group col-xs-2">
-        <label for="addressType">Type</label>
-        <select class="form-control" [(ngModel)]="address.AddressType">
-            <option value="1">Home</option>
-            <option value="2">Work</option>
-            <option value="3">Delivery</option>
-          </select>
-    </div>
-    <div class="form-group col-xs-3">
-        <label for="area">Area</label>
-        <input type="text" class="form-control" id="addressType" placeholder="Area" [(ngModel)]="address.Area">
-    </div>
-    <div class="form-group col-xs-3">
-        <label for="street">Street</label>
-        <input type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="address.Street">
-    </div>
-    <div class="form-group col-xs-2">
-        <label for="streetNumber">Number</label>
-        <input type="text" class="form-control" id="streetNumber" placeholder="Number" [(ngModel)]="address.StreetNumber">
-    </div>
-    <div class="form-group col-xs-2">
-        <label for="postalCode">Postal Code</label>
-        <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" [(ngModel)]="address.PostalCode">
+<div class="panel panel-default">
+    <div class="panel-heading">Addresses <a href="javascript:void(0)" class="pull-right" (click)="addAddress()"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>
+    <div class="panel-body">
+        <div class="row" *ngFor="let address of list">
+            <div class="form-group col-xs-2">
+                <label for="addressType">Type</label>
+                <select class="form-control" [(ngModel)]="address.AddressType">
+                    <option value="1">Home</option>
+                    <option value="2">Work</option>
+                    <option value="3">Delivery</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-3">
+                <label for="area">Area</label>
+                <input type="text" class="form-control" id="addressType" placeholder="Area" [(ngModel)]="address.Area">
+            </div>
+            <div class="form-group col-xs-4">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="address.Street">
+            </div>
+            <div class="form-group col-xs-1">
+                <label for="streetNumber">Number</label>
+                <input type="text" class="form-control" id="streetNumber" placeholder="Number" [(ngModel)]="address.StreetNumber">
+            </div>
+            <div class="form-group col-xs-1">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" [(ngModel)]="address.PostalCode">
+            </div>
+            <div class="col-xs-1">               
+                <a href="javascript:void(0)" class="pull-right text-danger" (click)="deleteAddress(address)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+            </div>
+        </div>
     </div>
 </div>

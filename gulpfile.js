@@ -57,7 +57,8 @@ gulp.task("libs", () => {
             '@angular/**',
             'bootstrap/dist/**',
             'jquery/dist/**',
-            'toastr/build/**'
+            'toastr/build/**',
+            'bootstrap-select/dist/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("wwwroot/lib"));
 });

@@ -9,12 +9,16 @@
     <input type="text" class="form-control" id="firstname" placeholder="Firstname" [(ngModel)]="person.FirstName">
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">Addresses</div>
-    <div class="panel-body">
-      <addresses [(list)]="person.Addresses"></addresses>
-    </div>
+  <div class="form-group">
+    <label>Type</label>
+    <select #select id="select" multiple (change)="change($event.target.options)">
+        <option *ngFor="let item of personTypes" [value]="item.value">
+          {{item.name}}
+        </option>
+    </select>
   </div>
+
+  <addresses [(list)]="person.Addresses"></addresses>
 
   <button type="button" class="btn btn-danger" (click)="deletePerson()"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
   <button type="button" class="btn btn-success pull-right" (click)="savePerson()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
